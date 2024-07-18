@@ -1,5 +1,4 @@
-// src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import MovieCard from './components/MovieCard';
 import { fetchMovies } from './api';
@@ -11,23 +10,40 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [sortOption, setSortOption] = useState('title'); 
+
+  useEffect(() => {
+    handleSearch('');
+  }, []); 
 
   const handleSearch = async (query) => {
-    if (!query) {
-      setError('Please enter a movie name');
-      return;
-    }
     setLoading(true);
     setError('');
     try {
-      // Fetch new movies based on the query
       const newMovies = await fetchMovies(query);
-      // Set the new movies and clear previous results
       setMovies(newMovies);
     } catch (err) {
       setError('Failed to fetch movies');
     }
     setLoading(false);
+  };
+
+  const handleSort = (option) => {
+    if (option === sortOption) return; 
+
+    setSortOption(option);
+
+  
+    const sortedMovies = [...movies].sort((a, b) => {
+      if (option === 'title') {
+        return a.title.localeCompare(b.title);
+      } else if (option === 'year') {
+        return a.first_publish_year - b.first_publish_year;
+      }
+      return 0;
+    });
+
+    setMovies(sortedMovies);
   };
 
   return (
@@ -36,6 +52,10 @@ const App = () => {
         <div className="container">
           <h1 className="text-white text-center">Movie Search</h1>
           <SearchBar onSearch={handleSearch} />
+          <div className="text-center mt-3">
+            <button className="btn btn-secondary me-2" onClick={() => handleSort('title')}>Sort by Title</button>
+            <button className="btn btn-secondary" onClick={() => handleSort('year')}>Sort by Year</button>
+          </div>
         </div>
       </div>
       <div className="flex-grow-1 bg-light">
@@ -56,5 +76,3 @@ const App = () => {
 };
 
 export default App;
-
-

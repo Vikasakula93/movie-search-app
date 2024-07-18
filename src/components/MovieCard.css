@@ -1,21 +1,56 @@
-/* src/components/MovieCard.css */
 
-.card-text strong {
-    font-weight: 600; /* Adjust font-weight as needed */
-  }
-  
-  .card-body {
-    padding: 1.25rem; /* Adjust padding for better spacing */
-  }
-  
-  .card-text {
-    font-size: 0.9rem; /* Adjust font size for readability */
-  }
-  
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+
+.card-img-top {
+  height: 300px; 
+  object-fit: cover;
+}
+
 
 .card-title {
-    font-size: 1.25rem; /* Adjust font size for title */
-    font-weight: bold; /* Adjust font weight for emphasis */
-    margin-bottom: 0.75rem; /* Adjust margin for spacing */
-  }
-  
+  font-size: 1.25rem;
+}
+
+
+.card-text {
+  font-size: 1rem;
+}
+
+
+.bg-dark {
+  background-color: #343a40 !important; 
+}
+
+
+.input-group {
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.btn-primary {
+  border-radius: 0;
+}
+
+.react-spinner-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.text-danger {
+  font-weight: bold;
+  font-size: 1rem;
+}
