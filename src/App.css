@@ -1,0 +1,18 @@
+/* src/App.css */
+body {
+  background-color: #f8f9fa;
+  margin: 0;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
